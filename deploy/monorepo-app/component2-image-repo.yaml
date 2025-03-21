@@ -1,0 +1,7 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: imagerepository-for-component2
+  labels:
+    appstudio.redhat.com/component: component2
+    appstudio.redhat.com/application: monorepo-app

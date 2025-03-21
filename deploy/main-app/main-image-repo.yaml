@@ -1,0 +1,7 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: imagerepository-for-main-component
+  labels:
+    appstudio.redhat.com/component: main-component
+    appstudio.redhat.com/application: main-app

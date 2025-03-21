@@ -1,0 +1,6 @@
+resources:
+  - monorepo-app.yaml
+  - component1.yaml
+  - component2.yaml
+  - component1-image-repo.yaml
+  - component2-image-repo.yaml
