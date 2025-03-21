@@ -8,6 +8,8 @@ The `monorepo` branch contains another Application named `monorepo` and two Comp
 
 ## Deployment
 
+Checkout to `main` branch and execute:
+
 ```
 export NAMESPACE=test
 kubectl create namespace $NAMESPACE
