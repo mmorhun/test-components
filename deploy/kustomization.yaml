@@ -1,0 +1,5 @@
+resources:
+  - ./main-app
+  - ./monorepo-app
+
+namespace: test
