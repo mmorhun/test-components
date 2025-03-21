@@ -11,13 +11,13 @@ The `monorepo` branch contains another Application named `monorepo` and two Comp
 ```
 export NAMESPACE=test
 kubectl create namespace $NAMESPACE
-kubectl apply -k ./depoy --namespace=$NAMESPACE
+kubectl apply -k ./deploy --namespace=$NAMESPACE
 ```
 Alternatively, deploy only one app:
 ```
-kubectl apply -k ./depoy/main-app --namespace=$NAMESPACE
+kubectl apply -k ./deploy/main-app --namespace=$NAMESPACE
 ```
 or
 ```
-kubectl apply -k ./depoy/monorepo-qpp --namespace=$NAMESPACE
+kubectl apply -k ./deploy/monorepo-app --namespace=$NAMESPACE
 ```

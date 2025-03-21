@@ -1,0 +1,16 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: component1
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+    build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
+spec:
+  application: monorepo-app
+  componentName: component1
+  source:
+    git:
+      url: https://github.com/mmorhun/test-components.git
+      revision: monorepo
+      context: ./component1dir
+      dockerfileUrl: Dockerfile

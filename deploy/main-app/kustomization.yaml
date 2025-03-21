@@ -1,0 +1,5 @@
+resources:
+  - main-app.yaml
+  - main-component.yaml
+  - main-image-repo.yaml
+
