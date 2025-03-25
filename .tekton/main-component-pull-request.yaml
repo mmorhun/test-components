@@ -584,7 +584,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-main-component
+    serviceAccountName: appstudio-pipeline
   workspaces:
   - name: git-auth
     secret:
