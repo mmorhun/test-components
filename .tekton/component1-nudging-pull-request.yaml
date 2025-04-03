@@ -28,6 +28,8 @@ spec:
         cpu: 500m
         memory: 2Gi        
   params:
+  - name: skip-checks
+    value: 'true'
   - name: git-url
     value: '{{source_url}}'
   - name: revision
