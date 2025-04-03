@@ -18,17 +18,7 @@ metadata:
   name: main-component-on-pull-request
   namespace: test
 spec:
-  taskRunSpecs:
-  - pipelineTaskName: build-container
-    computeResources:
-      requests:
-        cpu: 300m
-        memory: 256Mi
-      limits:
-        memory: 2Gi
   params:
-  - name: skip-checks
-    value: "true"
   - name: git-url
     value: '{{source_url}}'
   - name: revision
@@ -610,8 +600,7 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate:
-    serviceAccountName: build-pipeline-main-component
+  taskRunTemplate: {}
   workspaces:
   - name: workspace
     volumeClaimTemplate:
