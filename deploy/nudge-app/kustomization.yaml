@@ -1,0 +1,6 @@
+resources:
+  - nudge-app.yaml
+  - component1-nudging.yaml
+  - component2-nudged.yaml
+  - component1-nudging-image-repo.yaml
+  - component2-nudged-image-repo.yaml

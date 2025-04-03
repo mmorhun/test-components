@@ -1,0 +1,17 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: component1-nudging
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+    build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
+spec:
+  application: nudge-app
+  componentName: component1-nudging
+  source:
+    git:
+      url: https://github.com/mmorhun/test-components.git
+      revision: component1-nudging
+      dockerfileUrl: Dockerfile
+  build-nudges-ref:
+    - component2-nudged

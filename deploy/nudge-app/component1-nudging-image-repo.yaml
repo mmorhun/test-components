@@ -1,0 +1,9 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: imagerepository-for-component1-nudging
+  annotations:
+    image-controller.appstudio.redhat.com/update-component-image: 'true'
+  labels:
+    appstudio.redhat.com/component: component1-nudging
+    appstudio.redhat.com/application: nudge-app
