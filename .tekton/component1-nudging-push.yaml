@@ -17,7 +17,18 @@ metadata:
   name: component1-nudging-on-push
   namespace: test
 spec:
+  taskRunSpecs:
+  - pipelineTaskName: build-container
+    computeResources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 2Gi        
   params:
+  - name: skip-checks
+    value: 'true'
   - name: git-url
     value: '{{source_url}}'
   - name: revision
