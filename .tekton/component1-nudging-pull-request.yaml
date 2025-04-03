@@ -22,10 +22,11 @@ spec:
   - pipelineTaskName: build-container
     computeResources:
       requests:
-        cpu: 300m
+        cpu: 100m
         memory: 256Mi
       limits:
-        memory: 2Gi
+        cpu: 500m
+        memory: 2Gi        
   params:
   - name: git-url
     value: '{{source_url}}'
