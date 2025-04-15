@@ -1,5 +1,5 @@
 # Image format: quay.io/org/namespace/component-name
-FROM quay.io/mmorhun-org/test/component1-nudging:tag@sha256:755eca45580f5062fa73d35be0182cdf1a0ab3b123f9c20c3aa18e6af5999796 AS source
+FROM quay.io/mmorhun-org/test/component1-nudging:tag@sha256:24a3714e0e76328d0a2ddfe4b178079e5a334800ab19a1c0fda4ba03112a1974 AS source
 
 FROM python:3.9-slim AS runner
 WORKDIR /app
