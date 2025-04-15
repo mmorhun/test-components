@@ -18,17 +18,9 @@ metadata:
   name: component1-nudging-on-pull-request
   namespace: test
 spec:
-  taskRunSpecs:
-  - pipelineTaskName: build-container
-    computeResources:
-      requests:
-        cpu: 250m
-        memory: 256Mi
-      limits:
-        memory: 2Gi
   params:
   - name: skip-checks
-    value: 'true'
+    value: "true"
   - name: git-url
     value: '{{source_url}}'
   - name: revision
@@ -608,7 +600,16 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunSpecs:
+  - computeResources:
+      limits:
+        memory: 2Gi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+    pipelineTaskName: build-container
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-component1-nudging
   workspaces:
   - name: workspace
     volumeClaimTemplate:
