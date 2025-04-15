@@ -2,5 +2,6 @@ resources:
   - ./main-app
   - ./monorepo-app
   - ./nudge-app
+  - ./multi-platform-app
 
 namespace: test

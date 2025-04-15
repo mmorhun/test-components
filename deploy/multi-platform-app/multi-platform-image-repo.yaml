@@ -1,0 +1,9 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: imagerepository-for-multi-platform-component
+  annotations:
+    image-controller.appstudio.redhat.com/update-component-image: 'true'
+  labels:
+    appstudio.redhat.com/component: multi-platform-component
+    appstudio.redhat.com/application: multi-platform-app

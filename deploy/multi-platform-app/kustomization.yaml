@@ -1,0 +1,4 @@
+resources:
+  - multi-platform-app.yaml
+  - multi-platform-component.yaml
+  - multi-platform-image-repo.yaml

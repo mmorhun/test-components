@@ -30,6 +30,11 @@ kubectl apply -k ./deploy/nudge-app --namespace=$NAMESPACE
 Note, in order for nudging to work, image reference must match.
 Which means that it's expected to deploy nudge components into `test` namespace and configured quay org must match.
 
+or
+```
+kubectl apply -k ./deploy/multi-platform-app --namespace=$NAMESPACE
+```
+
 ## Descrease resources requirements
 
 To descrease resource requirements of build task and disable checks,

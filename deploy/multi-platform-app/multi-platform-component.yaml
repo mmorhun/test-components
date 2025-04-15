@@ -1,0 +1,16 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: multi-platform-component
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+    build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+spec:
+  application: multi-platform-app
+  componentName: multi-platform-component
+  source:
+    git:
+      url: https://github.com/mmorhun/test-components.git
+      revision: multi-platform
+      context: ./
+      dockerfileUrl: Dockerfile
