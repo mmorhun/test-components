@@ -608,8 +608,7 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate:
-    serviceAccountName: build-pipeline-component1-nudging
+  taskRunTemplate: {}
   workspaces:
   - name: workspace
     volumeClaimTemplate:
