@@ -5,6 +5,7 @@ metadata:
   annotations:
     build.appstudio.openshift.io/request: configure-pac
     build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
+    mintmaker.appstudio.redhat.com/disabled: 'true'
 spec:
   application: nudge-app
   componentName: component1-nudging

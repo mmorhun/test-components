@@ -1,13 +1,14 @@
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
 metadata:
-  name: component1
+  name: monorepo-component1
   annotations:
     build.appstudio.openshift.io/request: configure-pac
     build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
+    mintmaker.appstudio.redhat.com/disabled: 'true'
 spec:
   application: monorepo-app
-  componentName: component1
+  componentName: monorepo-component1
   source:
     git:
       url: https://github.com/mmorhun/test-components.git

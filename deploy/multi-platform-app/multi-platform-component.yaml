@@ -5,6 +5,7 @@ metadata:
   annotations:
     build.appstudio.openshift.io/request: configure-pac
     build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+    mintmaker.appstudio.redhat.com/disabled: 'true'
 spec:
   application: multi-platform-app
   componentName: multi-platform-component

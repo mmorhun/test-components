@@ -27,8 +27,8 @@ or
 ```
 kubectl apply -k ./deploy/nudge-app --namespace=$NAMESPACE
 ```
-Note, in order for nudging to work, image reference must match.
-Which means that it's expected to deploy nudge components into `test` namespace and configured quay org must match.
+Note, in order for nudging to work, image reference must match (see Dockerfile in `component2-nudged`).
+By default, it's expected to deploy nudge components into `test` namespace and configured quay org must match.
 
 or
 ```
