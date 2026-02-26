@@ -1,0 +1,98 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  labels:
+    app.kubernetes.io/version: "1.0"
+  annotations:
+    tekton.dev/pipelines.minVersion: 0.21.0
+  name: test-task
+spec:
+  description: Test task
+  params:
+  - description: Param1
+    name: param1
+    type: string
+    default: ""
+  - description: Param2
+    name: param2
+    type: string
+    default: ""
+  - description: time to simulate load in seconds
+    name: delay
+    type: string
+    default: "120"
+  results:
+  - description: The Result
+    name: returnresult
+  steps:
+  - name: step1
+    image: quay.io/konflux-ci/task-runner:1.4.1
+    computeResources:
+      limits:
+        memory: 500M
+        cpu: 500m
+      requests:
+        memory: 50M
+        cpu: 50m
+    script: |
+      #!/usr/bin/env sh
+      #set -eu
+
+      cat <<'EOF' > /workspace/print-task-resources.sh
+      #!/usr/bin/env sh
+      echo "Pod name: $HOSTNAME"
+      # Namespace from serviceaccount mount
+      NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+      echo "Namespace: $NAMESPACE"
+
+      # Tekton step container names are prefixed with "step-"
+      CONTAINER_NAME="step-$1"
+
+      echo "Inspecting container: $CONTAINER_NAME"
+      echo "===== CPU Limit ====="
+      kubectl get pod $HOSTNAME -n $NAMESPACE \
+        -o jsonpath="{.spec.containers[?(@.name=='$CONTAINER_NAME')].resources.limits.cpu}"
+      echo ""
+      echo "===== Memory Limit ====="
+      kubectl get pod $HOSTNAME -n $NAMESPACE \
+        -o jsonpath="{.spec.containers[?(@.name=='$CONTAINER_NAME')].resources.limits.memory}"
+      echo ""
+      echo "===== Full Resource Section ====="
+      kubectl get pod $HOSTNAME -n $NAMESPACE \
+        -o jsonpath="{.spec.containers[?(@.name=='$CONTAINER_NAME')].resources}"
+      echo ""
+      EOF
+      chmod +x /workspace/print-task-resources.sh
+
+      /workspace/print-task-resources.sh step1
+
+      echo "Finished"
+
+  - name: step2
+    image: quay.io/konflux-ci/task-runner:1.4.1
+    env:
+    - name: PARAM_1
+      value: $(params.param1)
+    - name: PARAM_2
+      value: $(params.param2)
+    - name: DELAY
+      value: $(params.delay)
+    computeResources: {}
+    script: |
+      #!/usr/bin/env bash
+
+      if [ "${PARAM_1}" = "true" ] ; then
+        echo "Param1 is ${PARAM_1}"
+      fi
+      if [ "${PARAM_2}" = "true" ] ; then
+        echo "Param2 is ${PARAM_1}"
+      fi
+
+      /workspace/print-task-resources.sh step2
+
+      echo "Waiting $DELAY seconds..."
+      sleep $DELAY
+
+      printf "%s" "${DELAY}" > "$(results.returnresult.path)"
+
+      echo "Finished"

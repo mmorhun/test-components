@@ -1,0 +1,51 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    pipelinesascode.tekton.dev/max-keep-runs: '3'
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main"
+  name: test-pipeline-run
+  namespace: NAMESPACE
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: delay
+    value: '100'
+  pipelineSpec:
+    description: Test pipeline inline
+    params:
+    - name: git-url
+      description: Git URL
+      type: string
+      default: ""
+    - name: revision
+      description: git revision
+      type: string
+      default: ""
+    - name: delay
+      description: Delay in seconds to wait in tasks
+      type: string
+      default: "100"
+    tasks:
+    - name: test-task1
+      params:
+      - name: delay
+        value: $(params.delay)
+      - name: param1
+        value: $(params.git-url)
+      - name: param2
+        value: $(params.revision)
+      taskRef:
+        resolver: bundles
+        params:
+        - name: name
+          value: test-task
+        - name: bundle
+          value: quay.io/mmorhun-org/test-bundle:latest
+        - name: kind
+          value: task
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-main-component
